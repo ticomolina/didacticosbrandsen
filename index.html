@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Juegos para la tablet y cuadernillos para imprimir, para chicos de 3 a 6 años.">
+<meta property="og:title" content="Didácticos Brandsen">
+<meta property="og:description" content="Juegos para la tablet y cuadernillos para imprimir, para chicos de 3 a 6 años.">
+<meta name="theme-color" content="#1e1433">
+<title>Didácticos Brandsen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@125,800;125,900&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap">
+<style>
+html{-webkit-text-size-adjust:100%}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+
+/* Layout: landing de tienda en bandas (crema / violeta oscuro), filas de producto con borde grueso, packs tipo ticket y tarjeta de pedido flotante */
+:root{
+  --cream:#fdf8f0; --cream-2:#f4ead8; --night:#1e1433; --night-2:#3a2a60;
+  --orange:#f0954a; --orange-deep:#d9542f; --ink:#1c1a2b; --ink-soft:#5b566a;
+  --white:#ffffff; --tag:#c9472c; --wa:#1f9d55;
+  --f-display:"Archivo","Arial Black",system-ui,sans-serif;
+  --f-body:"DM Sans",system-ui,-apple-system,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{background:var(--cream);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.55}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--f-display);font-stretch:125%;font-weight:900;line-height:1.02;letter-spacing:-.015em;margin:0;text-wrap:balance}
+button{font:inherit;cursor:pointer;color:inherit}
+:focus-visible{outline:3px solid var(--orange-deep);outline-offset:3px}
+.eyebrow{font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+
+/* Botones */
+.btn{display:inline-flex;align-items:center;gap:12px;font-family:var(--f-display);font-stretch:125%;font-weight:800;font-size:1rem;
+  background:var(--orange);color:var(--ink);border:3px solid var(--ink);border-radius:999px;padding:12px 24px;box-shadow:5px 5px 0 var(--ink);text-decoration:none;transition:transform .12s, box-shadow .12s}
+.btn:hover{transform:translate(2px,2px);box-shadow:3px 3px 0 var(--ink)}
+.btn .chip{background:var(--ink);color:var(--white);border-radius:10px;padding:4px 10px;font-size:.9rem}
+.btn.sm{font-size:.85rem;padding:8px 16px;box-shadow:3px 3px 0 var(--ink)}
+.btn.dark{background:var(--ink);color:var(--white)}
+
+/* Barra superior y header */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--cream)}
+.strip{background:var(--night);color:var(--cream);text-align:center;font-size:.85rem;font-weight:500;padding-block:8px}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:6;background:var(--cream);border-bottom:3px solid var(--ink)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
+.logo .mark{width:40px;height:40px;border:3px solid var(--ink);border-radius:12px;background:var(--orange);display:grid;place-items:center;font-family:var(--f-display);font-stretch:125%;font-weight:900;font-size:.95rem}
+.logo .name{font-family:var(--f-display);font-stretch:125%;font-weight:900;font-size:.95rem;line-height:1}
+.logo .name small{display:block;font-family:var(--f-body);font-weight:700;font-size:.7rem;letter-spacing:.1em;color:var(--orange-deep);margin-top:3px}
+nav.links{display:flex;gap:28px;font-weight:700}
+nav.links a{color:var(--ink);text-decoration:none}
+nav.links a:hover{color:var(--orange-deep)}
+.hright{display:flex;align-items:center;gap:14px}
+.carticon{position:relative;border:0;background:none;padding:6px;display:grid;place-items:center}
+.carticon svg{width:26px;height:26px}
+.carticon .n{position:absolute;top:-2px;right:-4px;background:var(--orange-deep);color:#fff;border-radius:999px;min-width:20px;height:20px;font-size:.72rem;font-weight:700;display:grid;place-items:center;padding:0 5px}
+@media (max-width:860px){nav.links{display:none}}
+@media (max-width:520px){.top .btn{display:none}}
+
+/* Hero */
+.hero{background:radial-gradient(ellipse at 30% 20%,#3d2a6b 0%,var(--night) 65%);color:var(--white);padding-block:64px 72px;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:center}
+.hero h1{font-size:clamp(2.4rem,6vw,4.4rem)}
+.hero h1 span{color:var(--orange)}
+.hero p{font-size:1.15rem;color:#d9d2ea;max-width:46ch;margin:20px 0 28px}
+.hero .note{font-size:.88rem;color:#b9b0cf;margin-top:16px}
+.hero .btn{box-shadow:5px 5px 0 #8fd16a}
+.stage{position:relative;aspect-ratio:5/4;max-width:100%;border:3px solid var(--ink);border-radius:22px;background:var(--cream-2);overflow:hidden}
+.stage .badge{position:absolute;z-index:3;background:var(--white);color:var(--ink);border:3px solid var(--ink);border-radius:999px;padding:5px 14px;font-weight:700;font-size:.85rem}
+.stage .badge b{font-family:var(--f-display);font-stretch:125%}
+.stage .b1{left:14px;top:14px}.stage .b2{left:14px;bottom:14px}
+.page{position:absolute;width:42%;aspect-ratio:210/297;background:var(--white);border:2px solid #d9cfbd;border-radius:6px;box-shadow:0 10px 24px rgba(40,25,10,.18);padding:6%;display:flex;flex-direction:column;gap:8%}
+.page .t{height:7%;border-radius:4px;background:var(--night);width:70%}
+.p1{left:6%;top:16%;transform:rotate(-8deg)}
+.p2{left:30%;top:9%;transform:rotate(1deg);z-index:2}
+.p3{right:5%;top:17%;transform:rotate(7deg)}
+.trace{flex:1;display:flex;flex-direction:column;justify-content:space-around}
+.trace i{display:block;height:0;border-top:3px dashed #9aa3c4;border-radius:2px}
+.trace i:nth-child(odd){border-color:var(--orange)}
+.letters{flex:1;display:grid;grid-template-columns:repeat(3,1fr);gap:6px;align-content:start}
+.letters span{aspect-ratio:1;border:2px dashed #b9b0cf;border-radius:6px;display:grid;place-items:center;font-family:var(--f-display);font-stretch:125%;font-weight:900;color:#c9c2d9;font-size:clamp(.8rem,2vw,1.3rem)}
+.letters span:first-child{color:var(--night);border-style:solid;border-color:var(--night)}
+.find{flex:1;border-radius:6px;background:repeating-radial-gradient(circle at 30% 40%,#f6d6b3 0 6px,#cfe3c4 6px 12px,#c9d8ef 12px 18px);position:relative}
+.find::after{content:"";position:absolute;right:16%;bottom:18%;width:22%;aspect-ratio:1;border:4px solid var(--orange-deep);border-radius:50%}
+@media (max-width:860px){.hero .wrap{grid-template-columns:1fr}.hero{padding-block:44px 52px}}
+
+/* Pasos */
+.how{padding-block:64px;text-align:center}
+.how h2{font-size:clamp(1.8rem,4vw,2.7rem)}
+.steps{display:flex;justify-content:center;align-items:flex-start;gap:12px;margin-top:36px;flex-wrap:wrap}
+.step{width:220px;display:flex;flex-direction:column;align-items:center;gap:6px}
+.step .ic{width:72px;height:72px;border-radius:50%;background:var(--orange);display:grid;place-items:center;margin-bottom:6px}
+.step .ic svg{width:34px;height:34px}
+.step b{font-family:var(--f-display);font-stretch:125%;font-weight:800;font-size:1.05rem}
+.step span{color:var(--ink-soft);font-size:.95rem}
+.dots{width:90px;height:72px;background:radial-gradient(circle,#b3abc2 2px,transparent 2.5px) 0 50%/12px 12px repeat-x}
+.how .sub{margin-top:28px;font-weight:700;color:var(--ink-soft)}
+@media (max-width:760px){.dots{display:none}}
+
+/* Catálogo */
+.band{padding-block:64px;border-top:3px solid var(--ink)}
+.band.orange-top{border-top:0;position:relative}
+.band.orange-top::before{content:"";display:block;height:44px;margin-top:-64px;margin-bottom:64px;background:var(--orange) radial-gradient(circle,rgba(0,0,0,.08) 1.5px,transparent 2px) 0 0/12px 12px}
+.head{display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
+.head h2{font-size:clamp(1.9rem,4.5vw,3rem)}
+.head p{color:var(--ink-soft);margin:0;max-width:60ch}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:36px}
+.chips button{display:flex;align-items:center;gap:10px;border:3px solid var(--ink);background:var(--white);border-radius:999px;padding:9px 18px;font-weight:700}
+.chips button i{font-style:normal;font-size:.8rem;background:var(--cream-2);border-radius:999px;min-width:24px;height:24px;display:grid;place-items:center}
+.chips button[aria-pressed="true"]{background:var(--night);color:var(--white);border-color:var(--night)}
+.chips button[aria-pressed="true"] i{background:var(--orange);color:var(--ink)}
+
+.featured{display:grid;grid-template-columns:1fr 1fr;border:3px solid var(--ink);border-radius:22px;overflow:hidden;box-shadow:8px 8px 0 var(--orange);margin-bottom:28px;background:var(--night);color:var(--white)}
+.featured .art{position:relative;min-height:300px;background:linear-gradient(135deg,#2f6b4f,#14402c);display:grid;place-items:center;overflow:hidden}
+.featured .art .glyph{font-size:7rem;filter:drop-shadow(0 8px 16px rgba(0,0,0,.3))}
+.featured .art .flag{position:absolute;left:16px;top:16px;background:var(--orange);color:var(--ink);border:2px solid var(--ink);border-radius:999px;padding:5px 14px;font-weight:700;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase}
+.featured .info{padding:40px;display:flex;flex-direction:column;justify-content:center;gap:14px}
+.featured .info .eyebrow{color:#d9d2ea}
+.featured h3{font-size:clamp(1.6rem,3.2vw,2.3rem)}
+.featured p{color:#d9d2ea;margin:0}
+.featured .act{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-top:8px}
+.featured .price-l{font-family:var(--f-display);font-stretch:125%;font-weight:900;font-size:1.5rem}
+@media (max-width:760px){.featured{grid-template-columns:1fr}.featured .art{min-height:200px}.featured .info{padding:24px}}
+
+.rows{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media (max-width:760px){.rows{grid-template-columns:1fr}}
+.row{display:flex;align-items:center;gap:16px;background:var(--white);border:3px solid var(--ink);border-radius:18px;padding:12px;text-align:left;width:100%;transition:transform .12s, box-shadow .12s}
+.row:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--ink)}
+.row .th{flex:none;width:96px;height:80px;border-radius:12px;display:grid;place-items:center;font-family:var(--f-display);font-stretch:125%;font-weight:900;font-size:1.5rem;color:#fff}
+.row .tx{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.row .tags{color:var(--tag);font-size:.74rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase}
+.row .nm{font-family:var(--f-display);font-stretch:125%;font-weight:900;font-size:1.15rem;line-height:1.15}
+.row .pr{font-weight:500;color:var(--ink-soft);font-size:.95rem}
+.row .pr b{color:var(--ink)}
+.row .chev{flex:none;width:28px;height:28px}
+.row.soon{opacity:.6;cursor:default}
+.row.soon:hover{transform:none;box-shadow:none}
+
+/* Personalizado */
+.custom{background:var(--cream-2)}
+.custom .wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.avatars{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:420px}
+.avatars .a{aspect-ratio:1;background:var(--white);border:3px solid var(--ink);border-radius:20px;padding:10px}
+.avatars .a:nth-child(2){transform:translateY(-14px)}
+.avatars .a:nth-child(5){transform:translateY(-14px)}
+.avatars .a svg{width:100%;height:100%}
+.custom h2{font-size:clamp(1.9rem,4.2vw,2.9rem)}
+.custom p{color:var(--ink-soft);font-size:1.12rem;margin:18px 0}
+.checks{list-style:none;padding:0;margin:0 0 24px;display:grid;gap:14px}
+.checks li{display:flex;gap:12px;align-items:center;font-size:1.05rem}
+.checks li::before{content:"";flex:none;width:26px;height:26px;border-radius:50%;border:2px solid var(--ink);background:var(--orange) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 12.5l4 4 8-9' fill='none' stroke='%231c1a2b' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat}
+@media (max-width:860px){.custom .wrap{grid-template-columns:1fr}.avatars{margin:0 auto}}
+
+/* Packs */
+.packs{background:var(--night);color:var(--white);border-top:0}
+.packs .eyebrow{color:var(--orange)}
+.packs h2{font-size:clamp(1.9rem,4.5vw,3rem)}
+.tickets{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:28px}
+@media (max-width:900px){.tickets{grid-template-columns:1fr}}
+.ticket{background:var(--night-2);border-radius:20px;display:flex;flex-direction:column;position:relative}
+.ticket.best{background:var(--orange);color:var(--ink)}
+.ticket .top{padding:24px 24px 20px;display:flex;flex-direction:column;gap:8px;flex:1}
+.ticket .pill{align-self:flex-start;background:var(--ink);color:var(--orange);border-radius:999px;padding:6px 14px;font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.ticket h3{font-size:1.45rem}
+.ticket p{margin:0;color:#d9d2ea;font-size:.98rem}
+.ticket.best p{color:#3a2a1c}
+.ticket .save{font-weight:700}
+.ticket .cut{position:relative;border-top:3px dashed rgba(255,255,255,.35);margin:0 4px}
+.ticket.best .cut{border-color:rgba(28,26,43,.45)}
+.ticket .cut::before,.ticket .cut::after{content:"";position:absolute;top:-12px;width:22px;height:22px;border-radius:50%;background:var(--night)}
+.ticket .cut::before{left:-15px}.ticket .cut::after{right:-15px}
+.ticket .bot{padding:20px 14px 14px;text-align:center;display:flex;flex-direction:column;gap:2px}
+.ticket .bot .eyebrow{color:inherit;opacity:.85}
+.ticket .per{font-family:var(--f-display);font-stretch:125%;font-weight:900;font-size:2rem}
+.ticket .bot small{opacity:.8;margin-bottom:14px}
+.ticket .buy{border:3px solid var(--white);background:none;color:var(--white);border-radius:12px;padding:12px;font-weight:700;font-size:1.05rem}
+.ticket.best .buy{background:var(--ink);border-color:var(--ink);color:var(--orange)}
+.ticket .buy:hover{background:var(--white);color:var(--night)}
+.ticket.best .buy:hover{background:#2c2840;color:var(--orange)}
+
+/* FAQ */
+.faq{max-width:880px;margin:0 auto;display:grid;gap:14px}
+.faq details{background:var(--white);border:3px solid var(--ink);border-radius:16px}
+.faq summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 22px;font-weight:700;font-size:1.08rem;cursor:pointer}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-family:var(--f-display);font-weight:900;font-size:1.5rem;line-height:1}
+.faq details[open] summary::after{content:"−"}
+.faq p{margin:0;padding:0 22px 20px;color:var(--ink-soft)}
+.faqband .head{max-width:880px;margin-left:auto;margin-right:auto}
+
+footer{background:var(--night);color:#b9b0cf;padding-block:36px 120px;font-size:.92rem}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+footer b{color:var(--white)}
+.draft{color:var(--orange)}
+
+/* Tarjeta flotante */
+.float{position:fixed;z-index:8;right:max(20px,calc(env(safe-area-inset-right,0px) + 20px));bottom:calc(20px + env(safe-area-inset-bottom,0px));
+  display:flex;align-items:center;gap:24px;background:var(--cream);border:3px solid var(--ink);border-radius:18px;padding:14px 14px 14px 22px;box-shadow:0 12px 30px rgba(20,12,40,.25)}
+.float b{display:block;font-family:var(--f-display);font-stretch:125%;font-weight:900;font-size:1rem}
+.float small{color:var(--ink-soft);font-size:.9rem}
+@media (max-width:560px){.float{left:max(12px,calc(env(safe-area-inset-left,0px) + 12px));right:max(12px,calc(env(safe-area-inset-right,0px) + 12px));justify-content:space-between}}
+
+/* Drawer / modal */
+.scrim{position:fixed;inset:0;background:rgba(20,12,40,.5);z-index:20}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(440px,100%);background:var(--cream);z-index:21;display:flex;flex-direction:column;border-left:3px solid var(--ink);
+  padding:calc(18px + env(safe-area-inset-top,0px)) max(20px,env(safe-area-inset-right,0px)) calc(18px + env(safe-area-inset-bottom,0px)) 20px}
+.dhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.dhead h2{font-size:1.5rem}
+.x{border:3px solid var(--ink);background:var(--white);border-radius:50%;width:40px;height:40px;font-weight:900}
+.items{flex:1;overflow:auto;display:flex;flex-direction:column;gap:10px;min-height:0}
+.item{display:grid;grid-template-columns:1fr auto;gap:2px 12px;background:var(--white);border:3px solid var(--ink);border-radius:14px;padding:12px 14px}
+.item b{font-weight:700}
+.item small{color:var(--ink-soft);grid-column:1}
+.item .ip{font-weight:700;font-variant-numeric:tabular-nums;text-align:right}
+.item .rm{grid-column:2;justify-self:end;border:0;background:none;color:var(--orange-deep);font-weight:700;font-size:.85rem;padding:0}
+.empty{color:var(--ink-soft);padding:24px 0}
+.total{display:flex;justify-content:space-between;font-family:var(--f-display);font-stretch:125%;font-weight:900;font-size:1.35rem;padding:16px 0;border-top:3px dashed var(--ink);margin-top:14px;font-variant-numeric:tabular-nums}
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+.field label{font-weight:700;font-size:.92rem}
+.field input{font:inherit;border:3px solid var(--ink);border-radius:12px;padding:10px 14px;background:var(--white);color:var(--ink)}
+.wa{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--wa);color:#fff;text-decoration:none;font-weight:700;font-size:1.05rem;border:3px solid var(--ink);border-radius:999px;padding:13px;box-shadow:4px 4px 0 var(--ink)}
+.wa[aria-disabled="true"]{opacity:.45;pointer-events:none}
+.copyrow{display:flex;justify-content:center;margin-top:10px}
+.copy{border:0;background:none;color:var(--ink-soft);text-decoration:underline;font-size:.9rem}
+.waprev{font-size:.85rem;color:var(--ink-soft);white-space:pre-wrap;background:var(--cream-2);border-radius:12px;padding:10px 12px;margin-top:10px;max-height:120px;overflow:auto}
+
+.modal{position:fixed;z-index:22;left:50%;top:50%;transform:translate(-50%,-50%);width:min(500px,calc(100% - 32px));max-height:calc(100% - 32px);overflow:auto;background:var(--cream);border:3px solid var(--ink);border-radius:22px;padding:26px;box-shadow:8px 8px 0 var(--orange)}
+.modal h2{font-size:1.5rem}
+.modal .sub{color:var(--ink-soft);margin:6px 0 18px}
+.opts{display:grid;gap:10px;margin-bottom:16px}
+.opt{display:flex;justify-content:space-between;align-items:center;gap:12px;border:3px solid var(--ink);background:var(--white);border-radius:14px;padding:12px 16px;text-align:left}
+.opt span small{display:block;color:var(--ink-soft);font-size:.85rem}
+.opt b{font-family:var(--f-display);font-stretch:125%;font-weight:900;white-space:nowrap}
+.opt[aria-pressed="true"]{background:var(--night);color:var(--white)}
+.opt[aria-pressed="true"] small{color:#d9d2ea}
+.seg{display:flex;gap:8px;margin-bottom:12px}
+.seg button{flex:1;border:3px solid var(--ink);background:var(--white);border-radius:999px;padding:8px;font-weight:700}
+.seg button[aria-pressed="true"]{background:var(--orange)}
+.avs{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:12px}
+.av{border:3px solid transparent;border-radius:14px;padding:2px;background:var(--white);aspect-ratio:1;max-width:100%}
+.av[aria-pressed="true"]{border-color:var(--orange-deep)}
+.av svg{width:100%;height:100%;display:block}
+.err{color:var(--orange-deep);font-weight:700;font-size:.9rem;min-height:1.2em;margin:0}
+.mact{display:flex;gap:12px;justify-content:flex-end;align-items:center;margin-top:10px;flex-wrap:wrap}
+.ghost{border:0;background:none;font-weight:700;text-decoration:underline}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+
+a.row{color:inherit;text-decoration:none}
+.row .go{flex:none;font-family:var(--f-display);font-stretch:125%;font-weight:800;font-size:.85rem;background:var(--orange);border:3px solid var(--ink);border-radius:999px;padding:6px 14px}
+.row.soon .go{background:var(--cream-2)}
+.row .desc{color:var(--ink-soft);font-size:.92rem;line-height:1.4}
+.featured .art{background:radial-gradient(circle at 50% 40%,#ff8a3d 0%,#b9481f 45%,#2a1530 100%)}
+.dl{display:grid;gap:12px;margin-top:6px}
+.dlrow{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;background:var(--night-2);border-radius:14px;padding:14px 16px}
+.dlrow b{font-family:var(--f-display);font-stretch:125%;font-weight:900;font-size:1.05rem;display:block}
+.dlrow small{color:#d9d2ea}
+.btn[aria-disabled="true"]{opacity:.5;pointer-events:none;box-shadow:none}
+.howto{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:28px}
+.howto div{background:var(--cream-2);border-radius:16px;padding:18px}
+.howto b{font-family:var(--f-display);font-stretch:125%;font-weight:800;display:block;margin-bottom:4px}
+.howto span{color:var(--ink-soft);font-size:.95rem}
+footer{padding-block:36px 48px}
+</style>
+</head>
+<body>
+<div class="strip"><div class="wrap">Versión de muestra · Juegos para jugar online · Cuadernillos para descargar</div></div>
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#inicio"><span class="mark">DB</span><span class="name">DIDÁCTICOS<br>BRANDSEN<small>PARA CHICOS DE 3 A 6</small></span></a>
+    <nav class="links"><a href="#juegos">Juegos</a><a href="#cuadernillos">Cuadernillos</a><a href="#preguntas">Preguntas</a></nav>
+    <a class="btn sm" href="#juegos">Jugar</a>
+  </div>
+</header>
+
+<main id="inicio">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <h1>Juegos para la tablet. <span>Cuadernillos para la mesa.</span></h1>
+        <p>Juegos para practicar letras, palabras y observación desde el celu o la tablet, y cuadernillos para imprimir y hacer juntos en casa.</p>
+        <a class="btn" href="#juegos">Ver los juegos <span class="chip" id="gcount"></span></a>
+        <div class="note">Se juegan desde el navegador · Se pueden instalar como una app</div>
+      </div>
+      <div class="stage" aria-hidden="true">
+        <span class="badge b1"><b>3 a 6</b> años</span>
+        <div class="page p1"><div class="t"></div><div class="trace"><i></i><i></i><i></i><i></i><i></i></div></div>
+        <div class="page p2"><div class="t"></div><div class="letters"><span>A</span><span>A</span><span>A</span><span>a</span><span>a</span><span>a</span><span>M</span><span>M</span><span>M</span></div></div>
+        <div class="page p3"><div class="t"></div><div class="find"></div></div>
+        <span class="badge b2">Hoja A4 · imprimible</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="band orange-top" id="juegos">
+    <div class="wrap">
+      <div class="head"><h2>Juegos para el celu o la tablet</h2><p>Tocá uno para abrirlo. Funcionan en el navegador y se pueden dejar instalados en la tablet de cada chico.</p></div>
+      <div class="rows" id="rowsGames"></div>
+      <div class="howto">
+        <div><b>Para instalarlo en Android</b><span>Abrí el juego en Chrome, tocá los tres puntos y elegí “Agregar a pantalla de inicio”.</span></div>
+        <div><b>Para instalarlo en iPhone o iPad</b><span>Abrí el juego en Safari, tocá Compartir y elegí “Agregar a inicio”.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="cuadernillos">
+    <div class="wrap">
+      <div class="head"><h2>Cuadernillos para imprimir</h2><p>PDF en hoja A4. Se imprimen en casa, en color o blanco y negro, las veces que quieras.</p></div>
+      <div id="featured"></div>
+      <div class="rows" id="rowsBooks"></div>
+    </div>
+  </section>
+
+  <section class="band faqband" id="preguntas">
+    <div class="wrap">
+      <div class="head"><h2>Preguntas de padres</h2></div>
+      <div class="faq">
+        <details><summary>¿Los juegos necesitan internet?</summary><p>Para abrirlos la primera vez, sí. Si los instalás en el dispositivo, después se pueden usar igual.</p></details>
+        <details><summary>¿Tienen publicidad?</summary><p>No. Son juegos simples, sin publicidad ni compras dentro del juego.</p></details>
+        <details><summary>¿Necesito impresora para los cuadernillos?</summary><p>Sí, o podés imprimirlos en una librería. Son hojas A4 y funcionan en blanco y negro.</p></details>
+        <details><summary>¿Para qué edades están pensados?</summary><p>De 3 a 6 años. Los juegos de lectura van mejor desde que reconocen las letras.</p></details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap"><span><b>Didácticos Brandsen</b> · Buenos Aires, Argentina</span><span class="draft">Versión de muestra</span></div></footer>
+
+<script>
+/* ===== Datos editables ===== */
+const GAMES = [
+  {name:"Atrapa Fichas", tags:"Observación · Emojis", desc:"Encontrá las fichas de la lista antes de que se acaben. Granja, mar, espacio y más.", url:"https://ticomolina.github.io/atrapafichas/", color:"#e0803c", th:"🧩"},
+  {name:"Parejas que Leen", tags:"Lectura · Palabras", desc:"Uní cada dibujo con su palabra: el perro con PERRO.", url:"https://ticomolina.github.io/parejas/", color:"#7a4fa3", th:"🐶"},
+  {name:"¿Dónde está?", tags:"Lectura · Atención", desc:"Aparece una palabra y hay que tocar el dibujo correcto entre muchos.", url:"https://ticomolina.github.io/dondeesta/", color:"#3a6fc0", th:"🔍"},
+  {name:"Armá la Palabra", tags:"Letras · Escritura", desc:"Aparece un dibujo y arman su palabra con las letras.", url:"https://delightful-sprinkles-df7038.netlify.app/", color:"#2f8a5f", th:"👻"},
+  {name:"Buscá y Encontrá", tags:"Observación · Ilustraciones", desc:"Recorré la ilustración, acercá con los dedos y encontrá los objetos escondidos.", url:"https://ticomolina.github.io/searchit/", color:"#283a7a", th:"🪐"},
+  {name:"Fábrica de Juegos", tags:"Laberintos · Memotest · Más", desc:"Varios juegos clásicos en una sola app, con distintas temáticas.", url:"https://ticomolina.github.io/Fabricas/", color:"#c9a20f", th:"🏭"},
+  {name:"Bici-Aventura", tags:"Equilibrio · Reflejos", desc:"Ayudá al nene a mantener el equilibrio o esquivá obstáculos y juntá premios.", url:"https://darling-gaufre-b88526.netlify.app/", color:"#d9542f", th:"🚲"},
+  {name:"Palabra Mágica", tags:"Escritura · Con IA", desc:"Escriben una palabra y aparece su dibujo. Un adulto la configura la primera vez.", url:"https://eloquent-jalebi-123c51.netlify.app/", color:"#8a3b4f", th:"✨"},
+  {name:"Cuarto Revuelto", tags:"Observación · Palabras", desc:"Encontrá en el cuarto lo que pide la palabra: 3 ANTEOJOS.", url:"https://ticomolina.github.io/cuarto/", color:"#5b566a", th:"🧸"},
+];
+/* Cuando estén los PDF, completar file con el nombre del archivo publicado */
+const HALLOWEEN = {
+  name:"Halloween en casa", tags:"Actividades · Manualidades · Monstruos",
+  desc:"Fantasmas, calabazas, huesos y monstruos para pintar, recortar, armar y jugar. En dos partes para imprimir por separado.",
+  parts:[
+    {name:"Parte 1 · Actividades", sub:"Juegos y actividades para hacer en la mesa", file:"pdf/halloween-actividades.pdf", size:"39 páginas · 8 MB"},
+    {name:"Parte 2 · Manualidades", sub:"Para recortar, pegar y armar", file:"pdf/halloween-manualidades.pdf", size:"73 páginas · 20 MB"},
+  ]
+};
+const BOOKS = [
+  {name:"Navidad en casa", tags:"Actividades · Manualidades", color:"#2f6b4f", th:"🎄"},
+  {name:"Primeros trazos", tags:"Escritura · 3 a 4 años", color:"#3a6fc0", th:"Aa"},
+  {name:"¿Dónde está? Dinosaurios", tags:"Buscar · Personalizable", color:"#b8742a", th:"🦕"},
+  {name:"Juegos de mesa para imprimir", tags:"Cartas · Tableros · Dados", color:"#7a4fa3", th:"🎲"},
+];
+/* ===== fin datos ===== */
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const live=GAMES.filter(g=>!g.soon).length;
+$("#gcount").textContent=live+" juegos";
+$("#rowsGames").innerHTML=GAMES.map(g=>{
+  const inner=`<span class="th" style="background:${g.color}">${g.th}</span>
+    <span class="tx"><span class="tags">${esc(g.tags)}</span><span class="nm">${esc(g.name)}</span><span class="desc">${esc(g.desc)}</span></span>
+    <span class="go">${g.soon?"Pronto":"Jugar"}</span>`;
+  return g.soon?`<div class="row soon">${inner}</div>`:`<a class="row" href="${g.url}" target="_blank" rel="noopener">${inner}</a>`;
+}).join("");
+const H=HALLOWEEN;
+$("#featured").innerHTML=`
+  <article class="featured">
+    <div class="art"><span class="flag">Ya disponible</span><span class="glyph" aria-hidden="true">🎃</span></div>
+    <div class="info"><div class="eyebrow">${H.tags}</div><h3>${H.name}</h3><p>${H.desc}</p>
+      <div class="dl">${H.parts.map(p=>`<div class="dlrow"><span><b>${p.name}</b><small>${p.sub}${p.size?" · "+p.size:""}</small></span>${
+        p.file?`<a class="btn sm" href="${p.file}" download>Descargar PDF</a>`:`<span class="btn sm" aria-disabled="true">PDF en camino</span>`}</div>`).join("")}</div>
+    </div>
+  </article>`;
+$("#rowsBooks").innerHTML=BOOKS.map(b=>`
+  <div class="row soon"><span class="th" style="background:${b.color}">${b.th}</span>
+  <span class="tx"><span class="tags">${b.tags}</span><span class="nm">${b.name}</span><span class="desc">Próximamente</span></span></div>`).join("");
+</script>
+
+</body>
+</html>
